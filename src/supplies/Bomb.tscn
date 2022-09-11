@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/supplies/Supply.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/supply_bomb.png" type="Texture" id=2]
+[ext_resource path="res://assets/audios/get_bomb.wav" type="AudioStream" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 24.0
+height = 48.0
+
+[node name="Bomb" instance=ExtResource( 1 )]
+type = 1
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+position = Vector2( 2.5, 0.500006 )
+scale = Vector2( 3.45, 5.65 )
+
+[node name="GetSupply" parent="." index="3"]
+stream = ExtResource( 3 )

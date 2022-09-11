@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/enemies/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://res/styles/PB_Green.tres" type="StyleBox" id=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.121569, 0.0980392, 0.0980392, 0.784314 )
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+fly_speed = 350
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_right = 4.0
+margin_bottom = 14.0
+custom_styles/fg = ExtResource( 2 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+percent_visible = false
+
+[node name="FlyDown" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
+
+[node name="dead" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
+
+[connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
